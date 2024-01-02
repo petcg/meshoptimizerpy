@@ -1,0 +1,51 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			".venv*/**": true,
+			".vscode/**": true,
+			"build/**": true,
+			"meshoptimizer/**": true
+		},
+		"black-formatter.args": [
+			"--line-length=79",
+			"--skip-string-normalization"
+		],
+		"mypy-type-checker.args": [
+			"--check-untyped-defs"
+		],
+		"python.autoComplete.extraPaths": [
+			"${workspaceFolder}/meshopt"
+		],
+		"python.analysis.extraPaths": [
+			"${workspaceFolder}/meshopt"
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.black-formatter",
+			"ms-python.mypy-type-checker",
+			"njpwerner.autodocstring"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Python: Current File",
+				"type": "python",
+				"request": "launch",
+				"program": "${file}",
+				"console": "integratedTerminal",
+				"justMyCode": true,
+				"env": {
+					"PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"
+				}
+			}
+		]
+	}
+}
