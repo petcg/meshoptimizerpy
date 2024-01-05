@@ -4,7 +4,11 @@ from ctypes import Array, c_uint, c_uint8
 from ._types import *
 
 
-__all__ = ('make_meshlets', 'make_meshlet_vertices', 'make_meshlet_triangles')
+__all__ = [
+    'make_meshlets',
+    'make_meshlet_vertices',
+    'make_meshlet_triangles',
+]
 
 
 def make_meshlets(max_meshlets: int) -> Array[Meshlet]:
