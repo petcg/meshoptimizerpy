@@ -6,7 +6,7 @@ Notes:
 - Docstrings for _FuncPtr are written here for now.
 """
 
-from ctypes import c_float, c_uint, c_uint8, c_size_t
+from ctypes import c_float, c_uint, c_uint8
 from ctypes import Array, _Pointer
 
 from ._types import *
@@ -17,9 +17,7 @@ def buildMeshlets(
     meshlet_triangles: _Pointer[c_uint8] | Array[c_uint8],
     indices: _Pointer[c_uint] | Array[c_uint],
     index_count: int,
-    vertex_positions: _Pointer[c_float]
-    | Array[c_float]
-    | Array[Array[c_float]],
+    vertex_positions: _Pointer[c_float],
     vertex_count: int,
     vertex_positions_stride: int,
     max_vertices: int,
@@ -52,19 +50,19 @@ def buildMeshletsScan(
     meshlet_vertices: _Pointer[c_uint] | Array[c_uint],
     meshlet_triangles: _Pointer[c_uint8] | Array[c_uint8],
     indices: _Pointer[c_uint] | Array[c_uint],
-    index_count: c_size_t | int,
-    vertex_count: c_size_t | int,
-    max_vertices: c_size_t | int,
-    max_triangles: c_size_t | int,
+    index_count: int,
+    vertex_count: int,
+    max_vertices: int,
+    max_triangles: int,
 ) -> int:
     """For maximum efficiency the index buffer being converted has to be
     optimized for vertex cache first."""
     ...
 
 def buildMeshletsBound(
-    index_count: c_size_t | int,
-    max_vertices: c_size_t | int,
-    max_triangles: c_size_t | int,
+    index_count: int,
+    max_vertices: int,
+    max_triangles: int,
 ) -> int:
     """Compute worst case size of space for all meshlets"""
     ...
@@ -72,9 +70,7 @@ def buildMeshletsBound(
 def computeClusterBounds(
     indices: _Pointer[c_uint] | Array[c_uint],
     index_count: int,
-    vertex_positions: _Pointer[c_float]
-    | Array[c_float]
-    | Array[Array[c_float]],
+    vertex_positions: _Pointer[c_float],
     vertex_count: int,
     vertex_positions_stride: int,
 ) -> Bounds:
@@ -111,9 +107,7 @@ def computeMeshletBounds(
     meshlet_vertices: _Pointer[c_uint] | Array[c_uint],
     meshlet_triangles: _Pointer[c_uint8] | Array[c_uint8],
     triangle_count: int,
-    vertex_positions: _Pointer[c_float]
-    | Array[c_float]
-    | Array[Array[c_float]],
+    vertex_positions: _Pointer[c_float],
     vertex_count: int,
     vertex_positions_stride: int,
 ) -> Bounds:

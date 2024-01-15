@@ -1,7 +1,7 @@
 """A sample using ply."""
 
 from ctypes import c_float, c_uint, c_uint8
-from ctypes import Array, sizeof
+from ctypes import Array, sizeof, cast, POINTER
 import os
 
 import numpy
@@ -54,7 +54,7 @@ def main():
         meshlet_triangles,
         indices,
         index_count,
-        vertex_positions,
+        cast(vertex_positions, POINTER(c_float)),
         vertex_count,
         vertex_positions_stride,
         max_vertices,
