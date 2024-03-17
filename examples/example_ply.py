@@ -16,9 +16,11 @@ from meshopt.memory import (
 
 
 def main():
-    source = os.path.join(os.path.dirname(__file__), 'bun_zipper.ply')
+    source = os.path.normpath(
+        os.path.join(os.path.dirname(__file__), 'DistantTerrain01.ply')
+    )
 
-    print('Reading PLY file...')
+    print(f'Reading {source}...')
 
     # read data
     vertex_positions, indices = read_ply(source)
@@ -64,13 +66,17 @@ def main():
 
     print(f'{meshlet_count} meshlets')
 
-    target = os.path.join(
-        os.path.dirname(__file__),
-        '../build/examples/bun_zipper_meshlets.ply',
+    name, _ = os.path.splitext(os.path.basename(source))
+    target = os.path.normpath(
+        os.path.join(
+            os.path.dirname(__file__),
+            '../build/examples',
+            f'{name}_meshlet.ply',
+        )
     )
     os.makedirs(os.path.dirname(target), exist_ok=True)
 
-    print('Writing PLY file...')
+    print(f'Writing {target}...')
 
     # meshlets to PLY file
     meshlets_to_ply(
@@ -203,6 +209,7 @@ def meshlets_to_ply(
     # write stored strings to PLY file.
     with open(path, 'w', newline='\n') as file:
         file.write( 'ply\n'
+                    'format ascii 1.0\n'
                    f'element vertex {total_vertex_count}\n'
                     'property float x\n'
                     'property float y\n'
