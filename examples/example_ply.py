@@ -203,6 +203,7 @@ def meshlets_to_ply(
     # write stored strings to PLY file.
     with open(path, 'w', newline='\n') as file:
         file.write( 'ply\n'
+                    'format ascii 1.0\n'
                    f'element vertex {total_vertex_count}\n'
                     'property float x\n'
                     'property float y\n'
